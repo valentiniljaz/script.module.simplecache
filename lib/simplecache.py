@@ -100,7 +100,7 @@ class SimpleCache(object):
                 lastexecDatetime = cur_time
             
             if (lastexecDatetime + self.auto_clean_interval) < cur_time:
-                £ cleanup needed...
+                # cleanup needed...
                 self.do_cleanup()
 
     def _get_mem_cache(self, endpoint, checksum, cur_time):
