@@ -92,9 +92,16 @@ class SimpleCache(object):
         lastexecuted = self._win.getProperty("simplecache.clean.lastexecuted")
         if not lastexecuted:
             self._win.setProperty("simplecache.clean.lastexecuted", repr(cur_time))
-        elif (eval(lastexecuted) + self._auto_clean_interval) < cur_time:
-            # cleanup needed...
-            self._do_cleanup()
+        else:
+            # Eval should be in try/cactch, you never know what it could run
+            try:
+                lastexecDatetime = eval(lastexecuted)
+            except Exception:
+                lastexecDatetime = cur_time
+            
+            if (lastexecDatetime + self.auto_clean_interval) < cur_time:
+                £ cleanup needed...
+                self.do_cleanup()
 
     def _get_mem_cache(self, endpoint, checksum, cur_time):
         '''
