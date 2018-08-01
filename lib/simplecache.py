@@ -99,9 +99,9 @@ class SimpleCache(object):
             except Exception:
                 lastexecDatetime = cur_time
             
-            if (lastexecDatetime + self.auto_clean_interval) < cur_time:
+            if (lastexecDatetime + self._auto_clean_interval) < cur_time:
                 # cleanup needed...
-                self.do_cleanup()
+                self._do_cleanup()
 
     def _get_mem_cache(self, endpoint, checksum, cur_time):
         '''
